@@ -74,7 +74,7 @@ class LoginController extends Controller
 
             //check if user has activated the email
             $user = $this->guard()->user();
-            if (!$user->activated)
+            if ($env = env('LOGIN_ONLY_CONFIRMED', 'true') && !$user->activated)
             {
                 auth()->logout();
                 session()->flash('activationWarning', 'true');

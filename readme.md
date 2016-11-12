@@ -5,3 +5,12 @@ Just follow these steps to get it started
 2. run "php artisan migrate" to create all the necessary tables for setting up user and roles
 3(optional). run "db:seed" to add 2 roles and 1 admin user that I have created in the seed files
 4. use your .env file, put correct email settings and database settings
+
+Configuration
+--------------------------------
+
+In your .env file add this line:
+LOGIN_ONLY_CONFIRMED=true
+
+If the variable is true, the users won't be able to login without confirming their email first.
+If you set the variable as false, the users can login without having to confirm their email by opening the confirmation link.
