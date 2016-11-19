@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
         $user->email = "whatever@hotmail.com";
         $user->password = bcrypt('Test12345!');
         $user->activated = true;
+        $user->api_token = str_random(60);
         $user->save();
         $user->roles()->attach($role_admin);
     }

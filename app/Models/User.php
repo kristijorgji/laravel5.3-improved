@@ -5,6 +5,16 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+/**
+ * @property string $name
+ * @property string $surname
+ * @property string $username
+ * @property string $email
+ * @property string $password
+ * @property bool $activated
+ * @property string $api_token
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'username', 'email', 'password',
+        'name', 'surname', 'api_token', 'username', 'email', 'password',
     ];
 
     /**

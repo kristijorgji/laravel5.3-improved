@@ -11,7 +11,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->truncateAll();
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
+    }
+
+    public function truncateAll()
+    {
+        $files = Finder::create()->in(base_path("database\migrations"))->sortByName();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        foreach ($files as $file)
+        {
+            //echo $file->getRealPath() . PHP_EOL;
+            $content = $file->getContents();
+            preg_match("#Schema\:\:create *\('(.*)'#", $content, $out);
+            DB::table($out[1])->truncate();
+            echo "Truncated: {$out[1]}" . PHP_EOL;
+        }
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     }
 }
