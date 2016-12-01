@@ -6,6 +6,7 @@ What is added?
   4. NoCache Middleware is added and is very useful for developement. It is located in the app/http/kernel just uncomment it
   5. php artisan droptables command is added. It does exactly what it says, drops all your database tables and then you can migrate from scratch
   6. Dynamic truncateAll method added to DatabaseSeeder. All the tables created by your migration files will be made empty when the function is called before you seed new data.
+  7. Tymon JWT package added as default authentification driver for api routes together with my roles middleware. Example routes are included
     
 Just follow these steps to get the project ready
 
@@ -15,7 +16,7 @@ Installation
 2. run "php artisan migrate" to create all the necessary tables for setting up user and roles
 3. (optiona) run "php artisan db:seed" to add 2 roles ("Admin" and "User") and 1 admin user that I have created in the seed files
 4. use your .env file, put correct email settings and database settings
-
+5. php artisan jwt:generate to create secret key used to sign the tokens for the api routes
 Configuration
 --------------------------------
 
