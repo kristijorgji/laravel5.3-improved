@@ -81,8 +81,7 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'api_token' => str_random(60)
+            'password' => bcrypt($data['password'])
         ]);
         $user->roles()->attach(Role::where('name', 'User')->first());
         return $user;

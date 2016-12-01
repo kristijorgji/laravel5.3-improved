@@ -13,7 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $email
  * @property string $password
  * @property bool $activated
- * @property string $api_token
  */
 class User extends Authenticatable
 {
@@ -25,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'api_token', 'username', 'email', 'password',
+        'name', 'surname', 'username', 'email', 'password',
     ];
 
     /**

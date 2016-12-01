@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckRole
+class CheckRole extends BaseMiddleware
 {
     /**
      * Handle an incoming request.
@@ -13,20 +13,33 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$roles)
     {
-        $actions = $request->route()->getAction();
-        $roles = isset($actions['roles']) ? $actions['roles'] : null;
+        $apiRequest = $this->isApiRequest($request);
 
         if ($request->user() === null && $roles !== null){
-            //return response("Error", 401);
-            return redirect()->route('login', ['returnUrl' => $request->path()]);
+            if ($apiRequest){
+                return $this->respond('roles.nouser', 'The user needs to be authenticated!', 401);
+            }else{
+                return redirect()->route('login', ['returnUrl' => $request->path()]);
+            }
         }
 
+        //valid user and role
         if (!$roles || $request->user()->hasAnyRole($roles)){
             return $next($request);
         }
 
-        return response("Error", 401);
+        //valid user, role not allowed
+        if ($apiRequest){
+            return $this->respond('roles.invalid', 'You don\'t have permission to access this route!', 401);
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    private function isApiRequest($request)
+    {
+        return $request->hasHeader('authorization');
     }
 }

@@ -8,8 +8,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        //we need to see that json back if we access the route correctly
-        echo "DADADADADADA";
         return [
             [
                 "id" => 1,

@@ -15,17 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [
-    'as' => 'home',
-    'uses' => 'HomeController@index',
-    'roles' => '*'
-]);
+Route::get('/home', 'HomeController@index')->middleware('roles:*');
 
-Route::get('admin', [
-    'as' => 'admin',
-    'uses' => 'AdminController@index',
-    'roles' => ['Admin']
-]);
+Route::get('admin', 'AdminController@index')->middleware('roles:Admin');
 
 //Auth::routes();
 
