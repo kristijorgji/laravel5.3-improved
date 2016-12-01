@@ -34,7 +34,7 @@ class CheckRole extends BaseMiddleware
         if ($apiRequest){
             return $this->respond('roles.invalid', 'You don\'t have permission to access this route!', 401);
         }else{
-            return redirect()->route('home');
+            return redirect('/');
         }
     }
 
