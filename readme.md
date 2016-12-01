@@ -10,14 +10,12 @@ What is added?
   6. Dynamic truncateAll method added to DatabaseSeeder. All the tables created by your migration files will be made empty when the function is called before you seed new data.
   7. Tymon JWT package is added, registered and JWT is used as default authentification driver for API routes together with my roles middleware. Example API routes are included with authentification route to get the token and another example route that uses both roles and needs the token.
     
-Just follow these steps to get the project ready
-
 Installation
 --------------------------------
-1. run "composer install" in your project directory to get all dependencies
+1. run "composer install" in your project directory to get all the dependencies
 2. run "php artisan migrate" to create all the necessary tables for setting up user and roles
 3. (optiona) run "php artisan db:seed" to add 2 roles ("Admin" and "User") and 1 admin user that I have created in the seed files
-4. use your .env file, put correct email settings and database settings
+4. put correct email settings and database settings in your .env file
 5. run "php artisan jwt:generate" to create secret key used to sign the tokens for the api routes, more config is found on config/jwt.php
 
 Configuration
